@@ -30,6 +30,14 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+  },
+  mounted() {
+    this.fetchPref()
+  },
+  methods: {
+    fetchPref() {
+      this.$store.dispatch('fetchPref')
+    }
   }
 }
 </script>
