@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 export default {
   mode: 'spa',
   /*
@@ -30,6 +32,10 @@ export default {
   plugins: [
     {
       src: '@/plugins/vue-chartjs',
+      ssr: false
+    },
+    {
+      src: '@/plugins/axios',
       ssr: false
     }
   ],
