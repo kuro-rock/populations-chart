@@ -1,6 +1,6 @@
 # populations-chart
 
-![イメージ](https://user-images.githubusercontent.com/940915/82634630-2b323100-9c39-11ea-85fe-d133da296a88.png)
+![イメージ](https://user-images.githubusercontent.com/940915/82635740-df34bb80-9c3b-11ea-89a2-1cf83cf51881.png)
 
 1. RESAS(地域経済分析システム) APIの「都道府県一覧」からAPIを取得する
 2. APIレスポンスから都道府県一覧のチェックボックスを動的に生成する
