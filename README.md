@@ -1,6 +1,6 @@
 # populations-chart
 
-> Changes in total population by prefecture
+![イメージ](https://user-images.githubusercontent.com/940915/82634630-2b323100-9c39-11ea-85fe-d133da296a88.png)
 
 1. RESAS(地域経済分析システム) APIの「都道府県一覧」からAPIを取得する
 2. APIレスポンスから都道府県一覧のチェックボックスを動的に生成する
@@ -25,3 +25,4 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
