@@ -24,6 +24,9 @@
           </li>
         </ul>
       </div>
+      <div class="chart-container">
+        <line-chart :chart-data="chartData" />
+      </div>
     </div>
   </div>
 </template>
@@ -43,6 +46,9 @@ export default {
   computed: {
     prefs() {
       return this.$store.getters.getPref
+    },
+    chartData() {
+      return this.$store.getters.getChart
     }
   },
   mounted() {
