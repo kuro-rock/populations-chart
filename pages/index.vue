@@ -5,8 +5,12 @@
         Changes in total population by prefecture
       </h1>
       <div class="wrap-pref">
-        <ul>
-          <li v-for="(pref, index) in prefs" :key="pref.prefCode">
+        <ul class="pref_list">
+          <li
+            v-for="(pref, index) in prefs"
+            :key="pref.prefCode"
+            class="pref_list-item"
+          >
             <label>
               <input
                 :id="'pref' + index"
@@ -78,5 +82,22 @@ export default {
   font-weight: bold;
   font-size: 2rem;
   color: #35495e;
+}
+
+.wrap-pref {
+  margin-top: 1rem;
+}
+
+.pref_list {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.pref_list-item {
+  text-align: left;
+  display: inline-blocks;
+  width: 6em;
 }
 </style>
