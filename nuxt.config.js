@@ -37,6 +37,10 @@ export default {
     {
       src: '@/plugins/axios',
       ssr: false
+    },
+    {
+      src: '@/plugins/hsvToRgb.js',
+      ssr: false
     }
   ],
   /*
