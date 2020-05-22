@@ -10,9 +10,15 @@ export const mutations = {
   setPopulation(state, data) {
     const obj = {
       prefCode: data.prefCode,
-      data: data.result.data[0].data
+      data: data.result.data[0].data,
+      isSelect: true
     }
     state.population.push(obj)
+  },
+  togglePref(state, prefCode) {
+    state.population.forEach((item) => {
+      if (item.prefCode === prefCode) item.isSelect = !item.isSelect
+    })
   }
 }
 
@@ -37,7 +43,11 @@ export const getters = {
     const datasets = []
     if (state.population.length < 1) return datasets
 
-    state.population.forEach((item) => {
+    const selectedPopulation = state.population.filter(
+      (item) => item.isSelect === true
+    )
+
+    selectedPopulation.forEach((item) => {
       const obj = {
         label: getters.getPrefNameByCode(item.prefCode),
         fill: false,
@@ -64,7 +74,7 @@ export const actions = {
 
   async fetchPopulation({ commit, getters }, prefCode) {
     if (getters.existsPopulation(prefCode)) {
-      return false
+      return commit('togglePref', prefCode)
     }
 
     const data = await this.$api.$get(
