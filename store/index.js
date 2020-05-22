@@ -25,6 +25,34 @@ export const getters = {
       (item) => item.prefCode === prefCode
     )
     return index !== -1
+  },
+  getPrefNameByCode: (state) => (prefCode) => {
+    return state.pref.find((item) => item.prefCode === prefCode).prefName
+  },
+  getLabels: (state) => {
+    if (state.population.length < 1) return []
+    return state.population[0].data.map((obj) => obj.year)
+  },
+  getDataSets: (state, getters) => {
+    const datasets = []
+    if (state.population.length < 1) return datasets
+
+    state.population.forEach((item) => {
+      const obj = {
+        label: getters.getPrefNameByCode(item.prefCode),
+        fill: false,
+        data: item.data.map((obj) => obj.value)
+      }
+      datasets.push(obj)
+    })
+    return datasets
+  },
+  getChart: (state, getters) => {
+    const dataCollection = {
+      labels: getters.getLabels,
+      datasets: getters.getDataSets
+    }
+    return JSON.parse(JSON.stringify(dataCollection))
   }
 }
 
