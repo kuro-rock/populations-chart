@@ -1,16 +1,19 @@
 <template>
   <div class="container">
-    <div>
-      <logo />
+    <div class="inner">
       <h1 class="title">
-        populations-chart
-      </h1>
-      <h2 class="subtitle">
         Changes in total population by prefecture
-      </h2>
+      </h1>
+      <p>
+        都道府県別の総人口推移を表示します。
+      </p>
       <div class="wrap-pref">
-        <ul>
-          <li v-for="(pref, index) in prefs" :key="pref.prefCode">
+        <ul class="pref_list">
+          <li
+            v-for="(pref, index) in prefs"
+            :key="pref.prefCode"
+            class="pref_list-item"
+          >
             <label>
               <input
                 :id="'pref' + index"
@@ -24,23 +27,41 @@
           </li>
         </ul>
       </div>
-      <div class="chart-container">
-        <line-chart :chart-data="chartData" />
+      <div v-if="chartData.datasets.length > 0" class="chart-container">
+        <line-chart :chart-data="chartData" :options="chartOptions" />
+      </div>
+      <div v-else class="chart-container">
+        <p>上記のチェックリストから表示したい都道府県名を選択してください。</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
-  },
   data() {
     return {
-      selectedPrefs: []
+      selectedPrefs: [],
+      chartOptions: {
+        maintainAspectRatio: false,
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                callback: (label, index, labels) =>
+                  `${label.toLocaleString()}人`
+              }
+            }
+          ],
+          xAxes: [
+            {
+              ticks: {
+                callback: (label, index, labels) => `${label}年`
+              }
+            }
+          ]
+        }
+      }
     }
   },
   computed: {
@@ -75,29 +96,45 @@ export default {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
   text-align: center;
 }
 
+.inner {
+  width: 80vw;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
+  padding: 0.5em 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-weight: bold;
+  font-size: 2rem;
   color: #35495e;
-  letter-spacing: 1px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.wrap-pref {
+  margin-top: 1rem;
 }
 
-.links {
-  padding-top: 15px;
+.pref_list {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.pref_list-item {
+  text-align: left;
+  display: inline-blocks;
+  width: 6em;
+}
+
+.chart-container {
+  position: relative;
+  height: 40vh;
+  margin: 2rem auto 0;
 }
 </style>
