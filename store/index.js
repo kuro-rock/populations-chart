@@ -10,7 +10,6 @@ export const mutations = {
   setPopulation(state, data) {
     const obj = {
       prefCode: data.prefCode,
-      prefName: data.prefName,
       data: data.result.data[0].data
     }
     state.population.push(obj)
