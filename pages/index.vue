@@ -1,13 +1,9 @@
 <template>
   <div class="container">
     <div>
-      <logo />
       <h1 class="title">
-        populations-chart
-      </h1>
-      <h2 class="subtitle">
         Changes in total population by prefecture
-      </h2>
+      </h1>
       <div class="wrap-pref">
         <ul>
           <li v-for="(pref, index) in prefs" :key="pref.prefCode">
@@ -32,12 +28,7 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
-  },
   data() {
     return {
       selectedPrefs: []
@@ -80,13 +71,13 @@ export default {
 }
 
 .title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
+  padding: 0.5em 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-weight: bold;
+  font-size: 2rem;
   color: #35495e;
-  letter-spacing: 1px;
 }
 
 .subtitle {
