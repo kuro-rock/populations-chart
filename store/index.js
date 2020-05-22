@@ -8,10 +8,13 @@ export const mutations = {
     state.pref = data
   },
   setPopulation(state, data) {
+    const RGB = this.$hsvToRgb((360 / 15) * (data.prefCode % 15), 1, 1)
+    const color = `rgba(${RGB[0]},${RGB[1]},${RGB[2]},1)`
     const obj = {
       prefCode: data.prefCode,
       data: data.result.data[0].data,
-      isSelect: true
+      isSelect: true,
+      color
     }
     state.population.push(obj)
   },
