@@ -24,6 +24,9 @@
           </li>
         </ul>
       </div>
+      <div class="chart-container">
+        <line-chart :chart-data="chartData" />
+      </div>
     </div>
   </div>
 </template>
@@ -43,6 +46,9 @@ export default {
   computed: {
     prefs() {
       return this.$store.getters.getPref
+    },
+    chartData() {
+      return this.$store.getters.getChart
     }
   },
   mounted() {
@@ -55,6 +61,8 @@ export default {
     togglePref(val) {
       if (this.selectedPrefs.includes(val)) {
         this.$store.dispatch('fetchPopulation', val.prefCode)
+      } else {
+        this.$store.commit('togglePref', val.prefCode)
       }
     }
   }
