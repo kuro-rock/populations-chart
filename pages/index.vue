@@ -8,17 +8,21 @@
       <h2 class="subtitle">
         Changes in total population by prefecture
       </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+      <div class="wrap-pref">
+        <ul>
+          <li v-for="(pref, index) in prefs" :key="pref.prefCode">
+            <label>
+              <input
+                :id="'pref' + index"
+                v-model="selectedPrefs"
+                type="checkbox"
+                :value="pref"
+                @change="togglePref(pref)"
+              />
+              {{ pref.prefName }}
+            </label>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -31,12 +35,27 @@ export default {
   components: {
     Logo
   },
+  data() {
+    return {
+      selectedPrefs: []
+    }
+  },
+  computed: {
+    prefs() {
+      return this.$store.getters.getPref
+    }
+  },
   mounted() {
     this.fetchPref()
   },
   methods: {
     fetchPref() {
       this.$store.dispatch('fetchPref')
+    },
+    togglePref(val) {
+      if (this.selectedPrefs.includes(val)) {
+        this.$store.dispatch('fetchPopulation', val.prefCode)
+      }
     }
   }
 }
