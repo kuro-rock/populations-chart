@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div>
+    <div class="inner">
       <h1 class="title">
         Changes in total population by prefecture
       </h1>
@@ -99,6 +99,12 @@ export default {
   text-align: center;
 }
 
+.inner {
+  width: 80vw;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .title {
   padding: 0.5em 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -129,7 +135,6 @@ export default {
 .chart-container {
   position: relative;
   height: 40vh;
-  width: 80vw;
   margin: 2rem auto 0;
 }
 </style>
