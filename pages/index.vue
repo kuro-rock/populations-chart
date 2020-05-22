@@ -4,6 +4,9 @@
       <h1 class="title">
         Changes in total population by prefecture
       </h1>
+      <p>
+        都道府県別の総人口推移を表示します。
+      </p>
       <div class="wrap-pref">
         <ul class="pref_list">
           <li
@@ -24,8 +27,11 @@
           </li>
         </ul>
       </div>
-      <div class="chart-container">
-        <line-chart :chart-data="chartData" />
+      <div v-if="chartData.datasets.length > 0" class="chart-container">
+        <line-chart :chart-data="chartData" :options="chartOptions" />
+      </div>
+      <div v-else class="chart-container">
+        <p>上記のチェックリストから表示したい都道府県名を選択してください。</p>
       </div>
     </div>
   </div>
