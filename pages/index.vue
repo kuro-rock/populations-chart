@@ -70,7 +70,6 @@ export default {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
   text-align: center;
 }
 
@@ -99,5 +98,12 @@ export default {
   text-align: left;
   display: inline-blocks;
   width: 6em;
+}
+
+.chart-container {
+  position: relative;
+  height: 40vh;
+  width: 80vw;
+  margin: 2rem auto 0;
 }
 </style>
