@@ -41,7 +41,27 @@
 export default {
   data() {
     return {
-      selectedPrefs: []
+      selectedPrefs: [],
+      chartOptions: {
+        maintainAspectRatio: false,
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                callback: (label, index, labels) =>
+                  `${label.toLocaleString()}人`
+              }
+            }
+          ],
+          xAxes: [
+            {
+              ticks: {
+                callback: (label, index, labels) => `${label}年`
+              }
+            }
+          ]
+        }
+      }
     }
   },
   computed: {
