@@ -61,6 +61,8 @@ export default {
     togglePref(val) {
       if (this.selectedPrefs.includes(val)) {
         this.$store.dispatch('fetchPopulation', val.prefCode)
+      } else {
+        this.$store.commit('togglePref', val.prefCode)
       }
     }
   }
