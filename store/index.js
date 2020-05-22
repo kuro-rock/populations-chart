@@ -53,8 +53,10 @@ export const getters = {
     selectedPopulation.forEach((item) => {
       const obj = {
         label: getters.getPrefNameByCode(item.prefCode),
-        fill: false,
-        data: item.data.map((obj) => obj.value)
+        data: item.data.map((obj) => obj.value),
+        backgroundColor: item.color,
+        borderColor: item.color,
+        fill: false
       }
       datasets.push(obj)
     })
